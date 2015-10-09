@@ -4,8 +4,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.List;
-
 @Document public class Job {
     /* Privacy settings for each job */
     public static final int VISIBILITY_PUBLIC = 0;
@@ -15,21 +13,17 @@ import java.util.List;
     private String description;
     private String descriptionPath;
     private String title;
-    private String auth;
     private String password;
     private int visibility;
-    private List<Resume> resumes;
 
     @PersistenceConstructor
-    public Job(String description, String descriptionPath, String title, String auth,
-        String password, int visibility, List<Resume> resumes) {
+    public Job(String description, String descriptionPath, String title, String password,
+        int visibility) {
         this.description = description;
         this.descriptionPath = descriptionPath;
         this.title = title;
-        this.auth = auth;
         this.password = password;
         this.visibility = visibility;
-        this.resumes = resumes;
     }
 
     public String getId() {
@@ -48,10 +42,6 @@ import java.util.List;
         return title;
     }
 
-    public String getAuth() {
-        return auth;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -60,7 +50,11 @@ import java.util.List;
         return visibility;
     }
 
-    public List<Resume> getResumes() {
-        return resumes;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setVisibility(int visibility) {
+        this.visibility = visibility;
     }
 }
