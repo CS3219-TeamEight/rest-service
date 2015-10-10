@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.nio.charset.StandardCharsets;
 
-@RestController @RequestMapping("/job") public class JobController {
+@RestController public class JobController {
     @Autowired private JobRepository repo;
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value = "jobs", method = RequestMethod.POST)
     public Job createJob(@RequestParam(value = "description") String description,
         @RequestParam(value = "path") String descriptionPath,
         @RequestParam(value = "title") String title,
