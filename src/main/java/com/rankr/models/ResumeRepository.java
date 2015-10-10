@@ -1,6 +1,6 @@
-package models;
+package com.rankr.models;
 
-import entities.Resume;
+import com.rankr.entities.Resume;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.repository.MongoRepository;
 

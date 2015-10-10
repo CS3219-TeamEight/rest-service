@@ -1,8 +1,7 @@
-package models;
+package com.rankr.models;
 
-import entities.Job;
+import com.rankr.entities.Job;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface JobRepository extends MongoRepository<Job, String> {
-
 }

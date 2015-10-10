@@ -1,6 +1,7 @@
-package entities;
+package com.rankr.entities;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document public class Resume {
@@ -9,7 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
     private String resumePath;
     private double score;
 
-    public Resume(String jobID, String resumePath, double score) {
+    @PersistenceConstructor public Resume(String jobID, String resumePath, double score) {
         this.jobID = jobID;
         this.resumePath = resumePath;
         this.score = score;
@@ -29,5 +30,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
     public double getScore() {
         return score;
+    }
+
+    public void setScore(double score) {
+        this.score = score;
     }
 }

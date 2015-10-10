@@ -1,5 +1,6 @@
-package entities;
+package com.rankr.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -13,16 +14,19 @@ import org.springframework.data.mongodb.core.mapping.Document;
     private String description;
     private String descriptionPath;
     private String title;
-    private String password;
+    @JsonIgnore private String password;
+    @JsonIgnore private String salt;
     private int visibility;
 
     @PersistenceConstructor
     public Job(String description, String descriptionPath, String title, String password,
-        int visibility) {
+        String salt, int visibility) {
         this.description = description;
         this.descriptionPath = descriptionPath;
         this.title = title;
         this.password = password;
+        this.salt = salt;
+        assert (visibility == VISIBILITY_PRIVATE) || (visibility == VISIBILITY_PUBLIC);
         this.visibility = visibility;
     }
 
@@ -48,6 +52,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
     public int getVisibility() {
         return visibility;
+    }
+
+    public String getSalt() {
+        return salt;
     }
 
     public void setPassword(String password) {
