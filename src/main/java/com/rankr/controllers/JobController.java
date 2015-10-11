@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.nio.charset.StandardCharsets;
 
-@RestController public class JobController {
+@RestController @RequestMapping("/api/jobs") public class JobController {
     @Autowired private JobRepository repo;
 
-    @RequestMapping(value = "jobs", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public Job createJob(@RequestParam(value = "description") String description,
         @RequestParam(value = "path") String descriptionPath,
         @RequestParam(value = "title") String title,
@@ -36,7 +36,10 @@ import java.nio.charset.StandardCharsets;
         @RequestParam(value = "password") String password,
         @RequestParam(value = "visibility") int visibility) {
         Job foundJob = repo.findOne(id);
-        foundJob.setPassword(password);
+        byte[] hashArray =
+            PasswordHash.generateHash(password.toCharArray(), foundJob.getSalt().getBytes());
+        String hash = new String(hashArray, StandardCharsets.UTF_8);
+        foundJob.setPassword(hash);
         foundJob.setVisibility(visibility);
         repo.save(foundJob);
     }

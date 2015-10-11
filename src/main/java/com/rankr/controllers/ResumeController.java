@@ -11,20 +11,20 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-@RestController @RequestMapping("/{id}/resumes") public class ResumeController {
+@RestController @RequestMapping("/api/resumes") public class ResumeController {
     @Autowired private ResumeRepository repo;
 
     @RequestMapping(method = RequestMethod.POST)
-    public Resume createResume(@PathVariable(value = "id") String jobID,
+    public Resume createResume(@RequestParam(value = "jobID") String jobID,
         @RequestParam(value = "file") MultipartFile resumeFile,
         @RequestParam(value = "score") double score) {
         if (!resumeFile.isEmpty()) {
             try {
-                String destPath = "/rankr/" + jobID + "/" + resumeFile.getOriginalFilename();
-                File destFile = new File(destPath);
-                destFile.mkdirs();
+                String destPath = System.getProperty("user.home") + "/rankr/" + jobID + "/";
+                File destFile = new File(destPath + resumeFile.getOriginalFilename());
+                destFile.getParentFile().mkdirs();
                 resumeFile.transferTo(destFile);
-                Resume newResume = new Resume(jobID, destPath, score);
+                Resume newResume = new Resume(jobID, destFile.getAbsolutePath(), score);
                 repo.save(newResume);
                 return newResume;
             } catch (IOException e) {
