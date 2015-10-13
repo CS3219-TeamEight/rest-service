@@ -1,12 +1,13 @@
 package com.rankr.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document public class Resume {
     @Id private String id;
-    private String jobID;
+    @JsonIgnore private String jobID;
     private String resumePath;
     private double score;
 

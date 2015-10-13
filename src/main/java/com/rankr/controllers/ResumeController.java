@@ -16,10 +16,10 @@ import java.util.List;
 
     @RequestMapping(method = RequestMethod.POST)
     public Resume createResume(@RequestParam(value = "jobID") String jobID,
-        @RequestParam(value = "file") MultipartFile resumeFile,
-        @RequestParam(value = "score") double score) {
+        @RequestParam(value = "file") MultipartFile resumeFile) {
         if (!resumeFile.isEmpty()) {
             try {
+                double score = 50.0;
                 String destPath = System.getProperty("user.home") + "/rankr/" + jobID + "/";
                 File destFile = new File(destPath + resumeFile.getOriginalFilename());
                 destFile.getParentFile().mkdirs();
@@ -42,7 +42,7 @@ import java.util.List;
 
     /* TODO: Add authentication */
     @RequestMapping(method = RequestMethod.GET) public List<Resume> getResumes(
-        @PathVariable(value = "id") String jobID) {
+        @RequestParam(value = "id") String jobID) {
         return repo.findByJobID(jobID, new Sort(Sort.Direction.DESC, "Score"));
     }
 }

@@ -8,16 +8,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Map;
 
 @RestController @RequestMapping("/api/jobs") public class JobController {
     @Autowired private JobRepository repo;
 
     @RequestMapping(method = RequestMethod.POST)
-    public Job createJob(@RequestParam(value = "description") String description,
-        @RequestParam(value = "path") String descriptionPath,
-        @RequestParam(value = "title") String title,
-        @RequestParam(value = "password") String password,
-        @RequestParam(value = "visibility") int visibility) {
+    public Job createJob(@RequestBody Map<String, Object> jobJSON) {
+        String description = jobJSON.get("description").toString();
+        String descriptionPath = jobJSON.get("path").toString();
+        String title = jobJSON.get("title").toString();
+        String password = jobJSON.get("password").toString();
+        int visibility = (Integer) jobJSON.get("visibility");
+
         String salt = new String(PasswordHash.generateSalt(), StandardCharsets.UTF_8);
         byte[] hashArray = PasswordHash.generateHash(password.toCharArray(), salt.getBytes());
         String hash = new String(hashArray, StandardCharsets.UTF_8);
