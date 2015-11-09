@@ -65,6 +65,24 @@
     <orderEntry type="library" exported="" name="Gradle: org.springframework:spring-tx:4.1.7.RELEASE" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.springframework.data:spring-data-mongodb:1.6.3.RELEASE" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.springframework.data:spring-data-commons:1.9.3.RELEASE" level="project" />
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: cvia-1.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/cvia-1.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: zip4j_1.3.2">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/zip4j_1.3.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
   <component name="org.twodividedbyzero.idea.findbugs">
     <option name="_basePreferences">

@@ -1,68 +1,142 @@
 package com.rankr.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document public class Job {
-    /* Privacy settings for each job */
-    public static final int VISIBILITY_PUBLIC = 0;
-    public static final int VISIBILITY_PRIVATE = 1;
-
     @Id private String id;
+    private String jobTitle;
+    private String jobIndustry;
+    private String jobExperience;
+    private String educationLevel;
+    private String educationField;
+    private String languageSkills;
+    private String workSkills;
     private String description;
-    private String descriptionPath;
-    private String title;
-    @JsonIgnore private String password;
-    @JsonIgnore private String salt;
-    private int visibility;
+
+    private double multiplierJob;
+    private double multiplierEdu;
+    private double multiplierLang;
+    private double multiplierSkill;
 
     @PersistenceConstructor
-    public Job(String description, String descriptionPath, String title, String password,
-        String salt, int visibility) {
+    public Job(String id, String jobTitle, String jobIndustry, String jobExperience,
+        String educationLevel, String educationField, String languageSkills, String workSkills,
+        String description, double multiplierJob, double multiplierEdu, double multiplierLang,
+        double multiplierSkill) {
+        this.id = id;
+        this.jobTitle = jobTitle;
+        this.jobIndustry = jobIndustry;
+        this.jobExperience = jobExperience;
+        this.educationLevel = educationLevel;
+        this.educationField = educationField;
+        this.languageSkills = languageSkills;
+        this.workSkills = workSkills;
         this.description = description;
-        this.descriptionPath = descriptionPath;
-        this.title = title;
-        this.password = password;
-        this.salt = salt;
-        assert (visibility == VISIBILITY_PRIVATE) || (visibility == VISIBILITY_PUBLIC);
-        this.visibility = visibility;
+        this.multiplierJob = multiplierJob;
+        this.multiplierEdu = multiplierEdu;
+        this.multiplierLang = multiplierLang;
+        this.multiplierSkill = multiplierSkill;
     }
 
     public String getId() {
         return id;
     }
 
+    public String getJobTitle() {
+        return jobTitle;
+    }
+
+    public void setJobTitle(String jobTitle) {
+        this.jobTitle = jobTitle;
+    }
+
+    public String getJobIndustry() {
+        return jobIndustry;
+    }
+
+    public void setJobIndustry(String jobIndustry) {
+        this.jobIndustry = jobIndustry;
+    }
+
+    public String getJobExperience() {
+        return jobExperience;
+    }
+
+    public void setJobExperience(String jobExperience) {
+        this.jobExperience = jobExperience;
+    }
+
+    public String getEducationLevel() {
+        return educationLevel;
+    }
+
+    public void setEducationLevel(String educationLevel) {
+        this.educationLevel = educationLevel;
+    }
+
+    public String getEducationField() {
+        return educationField;
+    }
+
+    public void setEducationField(String educationField) {
+        this.educationField = educationField;
+    }
+
+    public String getLanguageSkills() {
+        return languageSkills;
+    }
+
+    public void setLanguageSkills(String languageSkills) {
+        this.languageSkills = languageSkills;
+    }
+
+    public String getWorkSkills() {
+        return workSkills;
+    }
+
+    public void setWorkSkills(String workSkills) {
+        this.workSkills = workSkills;
+    }
+
     public String getDescription() {
         return description;
     }
 
-    public String getDescriptionPath() {
-        return descriptionPath;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getTitle() {
-        return title;
+    public double getMultiplierJob() {
+        return multiplierJob;
     }
 
-    public String getPassword() {
-        return password;
+    public void setMultiplierJob(double multiplierJob) {
+        this.multiplierJob = multiplierJob;
     }
 
-    public int getVisibility() {
-        return visibility;
+    public double getMultiplierEdu() {
+        return multiplierEdu;
     }
 
-    public String getSalt() {
-        return salt;
+    public void setMultiplierEdu(double multiplierEdu) {
+        this.multiplierEdu = multiplierEdu;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public double getMultiplierLang() {
+        return multiplierLang;
     }
 
-    public void setVisibility(int visibility) {
-        this.visibility = visibility;
+    public void setMultiplierLang(double multiplierLang) {
+        this.multiplierLang = multiplierLang;
+    }
+
+    public double getMultiplierSkill() {
+        return multiplierSkill;
+    }
+
+    public void setMultiplierSkill(double multiplierSkill) {
+        this.multiplierSkill = multiplierSkill;
     }
 }

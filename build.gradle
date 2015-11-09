@@ -25,6 +25,7 @@ targetCompatibility = 1.8
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-data-mongodb")
+    compile files('lib/cvia-1.0.jar', 'lib/zip4j_1.3.2.jar')
     compile("org.springframework.boot:spring-boot-starter-web")
     testCompile("junit:junit")
 }
